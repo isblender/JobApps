@@ -1,3 +1,2 @@
-
-#Ignoring config.ini
+#Ignoring config.ini which stores database information
 *.ini
