@@ -1,2 +1,3 @@
-#excluding the configuration file
-*ini
+
+#Ignoring config.ini
+*.ini
