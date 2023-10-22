@@ -1,0 +1,5 @@
+[info]
+host = hostendpoint
+user = rootusername
+password = rootpassword
+db = jobDatabaseName
