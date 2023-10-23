@@ -5,9 +5,9 @@ This is a simple iOS app that helps you manage and keep track of your job applic
 
 <table>
   <tr>
-    <td><img src="https://github.com/isblender/jobApps/assets/142704958/0919e1f9-d4a9-47e1-a01c-c6bcc4f9c4af" width="300" height="500"></td>
-    <td><img src="https://github.com/isblender/jobApps/assets/142704958/df9744d8-1909-4b8d-955c-0c464c4a5066" width="300" height="500"></td>
-    <td><img src="https://github.com/isblender/jobApps/assets/142704958/de7a1a8c-ce4a-4eda-95b8-862afdb69661" width="300" height="500"></td>
+    <td><img src="https://github.com/isblender/jobApps/assets/142704958/0919e1f9-d4a9-47e1-a01c-c6bcc4f9c4af" width="300" height="450"></td>
+    <td><img src="https://github.com/isblender/jobApps/assets/142704958/df9744d8-1909-4b8d-955c-0c464c4a5066" width="300" height="450"></td>
+    <td><img src="https://github.com/isblender/jobApps/assets/142704958/de7a1a8c-ce4a-4eda-95b8-862afdb69661" width="300" height="450"></td>
   </tr>
 </table>
 
