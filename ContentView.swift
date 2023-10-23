@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreData
+
 struct JobApplication : Identifiable, Decodable {
     let id = UUID()
     var companyName: String
@@ -9,6 +10,12 @@ struct JobApplication : Identifiable, Decodable {
         case jobTitle = "pName"
     }
 }
+let topBackground = LinearGradient(
+    gradient: Gradient(colors: [Color(hex: 0x7785AC), Color(hex: 0x9AC6C5)]),
+    startPoint: .leading,
+    endPoint: .trailing
+)
+
 struct ContentView: View {
     @State private var jobCounter = 0
     @State private var jobApps: [JobApplication] = []
@@ -31,33 +38,49 @@ struct ContentView: View {
             } else {
                 // Once data is loaded, display the jobs / counter
                 NavigationView {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .center) {
                         HStack() {
-                            Text("Job Counter: \(jobCounter)")
+                            Text("Job Count: \(jobCounter)")
                                 .font(.largeTitle)
-                                .frame(alignment: .leading)
                                 .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             Spacer()
                             Button(action: {
                             }) {
                                 NavigationLink(destination: addJobView(jobApps: $jobApps, jobCount: $jobCounter)) {
                                     HStack {
                                         Image(systemName: "plus")
-                                            .font(.largeTitle)
+                                            .font(.title)
+                                            .padding(12)
+                                            .background(Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(8)
+                                        
                                     }
                                 }
                             }
                         }
+                        .background(topBackground)
                         Spacer()
-                        List(jobApps.reversed()) {
-                            Text("\($0.jobTitle) at \($0.companyName)")
-                                .font(.title)
+                        List(jobApps.reversed()) { job in
+                            VStack(alignment: .leading) {
+                                Text(job.companyName)
+                                    .font(.title)
+                                Text(job.jobTitle)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(8)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 3)
+                            .padding(.vertical, 4)
                         }
                         .listStyle(.inset)
                         Spacer()
                     }
                 }
-                Spacer()
+                .padding(.bottom)
             }
         }
         .onAppear { // As soon as user opens app, begin fetching data
@@ -84,12 +107,13 @@ struct addJobView: View {
     let appRetrieve  = appRetrieval()
     var body: some View {
         VStack {
-            TextField("Company Name", text: $compName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
             TextField("Job Title", text: $jTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .background(Color(white: 0.75))
+                .padding()
+            TextField("Company Name", text: $compName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .background(Color(white: 0.75))
                 .padding()
             Button(action: {
                 appRetrieve.postCompany(companyName: compName, jobTitle: jTitle) { response, error in
@@ -122,5 +146,15 @@ struct addJobView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+}
+extension Color {
+    init(hex: UInt) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xFF) / 255.0,
+            green: Double((hex >> 8) & 0xFF) / 255.0,
+            blue: Double(hex & 0xFF) / 255.0
+        )
     }
 }
