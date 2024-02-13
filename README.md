@@ -16,8 +16,6 @@ This is a simple iOS app that helps you manage and keep track of your job applic
 - - Through fetching data from SQL database
 - List applications
 - Add job
-- Remove (Coming soon)
-- Sort (Coming soon)
 
 ### API
 As mentioned above, the Flask API I made for the project is within app.py. If one wishes to create their own config.ini file for app.py to retrieve database information from, I included an example in config.ini.example.
